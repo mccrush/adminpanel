@@ -10,17 +10,7 @@
         </div>
         <div class="row">
           <div class="col-3 col-md-2 border-right p-0 admin-sidebar">
-            <h6 class="text-center m-0 mt-2 pb-2 border-bottom">
-              Коллекции
-              <button
-                v-show="true"
-                @click="createDoc = true; selectDocId=''; doc = {active: true, position: docs.length + 1}"
-                class="btn btn-sm btn-outline-primary p-0 pl-2 pr-2 ml-1 border-0"
-                :disabled="selectCollectionAlias ? true: false"
-                title="Создать документ"
-              >+</button>
-            </h6>
-
+            <h6 class="text-center m-0 mt-2 pb-2 border-bottom">Коллекции</h6>
             <List />
           </div>
           <div class="col-3 col-md-2 p-0 border-right">
@@ -28,7 +18,7 @@
               Документы
               <button
                 @click="createDoc = true; selectDocId=''; doc = {active: true, position: docs.length + 1}"
-                class="btn btn-sm btn-outline-primary p-0 pl-2 pr-2 ml-1 border-0"
+                class="btn btn-sm btn-light p-0 pl-2 pr-2 ml-1 border text-muted create-button"
                 :disabled="selectCollectionAlias ? true: false"
                 title="Создать документ"
               >+</button>
@@ -73,8 +63,10 @@ export default {
   padding: 0 12px !important;
 }
 
-.mybut {
-  display: inline-block;
-  border: none;
+.create-button {
+  position: relative;
+  margin: -4px 0 -1px 0;
+  height: 15px;
+  line-height: 1;
 }
 </style>
