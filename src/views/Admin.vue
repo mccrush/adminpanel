@@ -1,10 +1,11 @@
 <template>
-  <div class="p-5 bg-dark vh-100">
+  <div class="p-5 bg-dark vh-100 bg-image">
     <div class="bg-white shadow-sm rounded-lg admin-block">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 border-bottom p-3">
-            <h5 class="m-0 text-muted">Admin panel</h5>
+            <h6 class="m-0 mt-2 text-muted d-inline-block">Admin panel</h6>
+            <button class="btn btn-sm btn-light text-muted float-right">Logout</button>
           </div>
         </div>
         <div class="row">
@@ -22,6 +23,12 @@ export default {}
 </script>
 
 <style>
+.bg-image {
+  background-image: url(../assets/img/insert-backdrop.webp);
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .admin-block {
   max-width: 960px;
   height: calc(100vh - 96px);
@@ -29,6 +36,6 @@ export default {}
 }
 
 .admin-sidebar {
-  height: calc(100vh - 153px);
+  height: calc(100vh - 160px);
 }
 </style>
