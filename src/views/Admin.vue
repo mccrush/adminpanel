@@ -11,9 +11,9 @@
         <div class="row">
           <div class="col-3 col-md-2 border-right p-0 admin-sidebar">
             <h6 class="text-center m-0 mt-2 pb-2 border-bottom">Коллекции</h6>
-            <List />
+            <List :data="collections" />
           </div>
-          <div class="col-3 col-md-2 p-0 border-right">
+          <div class="col-3 col-md-2 p-0 border-right admin-sidebar">
             <h6 class="text-center m-0 mt-2 pb-2 border-bottom">
               Документы
               <button
@@ -23,7 +23,7 @@
                 title="Создать документ"
               >+</button>
             </h6>
-            <List />
+            <List :data="docs" />
           </div>
           <div class="col-6 col-md-8"></div>
         </div>
@@ -33,11 +33,19 @@
 </template>
 
 <script>
+import collections from '@/data/collections'
+import docs from '@/data/docs'
 import List from '@/components/admin/List'
 
 export default {
   components: {
     List
+  },
+  data() {
+    return {
+      collections,
+      docs
+    }
   }
 }
 </script>
