@@ -11,7 +11,12 @@
         <div class="row">
           <div class="col-3 col-md-2 border-right p-0 admin-sidebar">
             <h6 class="text-center m-0 mt-2 pb-2 border-bottom">Коллекции</h6>
-            <List :data="collections" />
+            <List
+              :data="collections"
+              type="collections"
+              :id="collectionId"
+              @select-item="selectItem"
+            />
           </div>
           <div class="col-3 col-md-2 p-0 border-right admin-sidebar">
             <h6 class="text-center m-0 mt-2 pb-2 border-bottom">
@@ -19,13 +24,22 @@
               <button
                 @click="createDoc = true; selectDocId=''; doc = {active: true, position: docs.length + 1}"
                 class="btn btn-sm btn-light p-0 pl-2 pr-2 ml-1 border text-muted create-button"
-                :disabled="selectCollectionAlias ? true: false"
+                :disabled="!collectionAlias ? true: false"
                 title="Создать документ"
               >+</button>
             </h6>
-            <List :data="docs" />
+            <List :data="docs" type="docs" :id="docId" @select-item="selectItem" />
           </div>
-          <div class="col-6 col-md-8"></div>
+          <div class="col-6 col-md-8">
+            <transition name="fade" mode="out-in">
+              <h6
+                v-if="!docId"
+                key="save"
+                class="text-center m-0 mt-2 pb-2 border-bottom"
+              >{{collectionAlias ? 'Выберите документ' : 'Выберите коллекцию'}}</h6>
+              <h6 v-else key="edit" class="text-center m-0 mt-2 pb-2 border-bottom">Форма</h6>
+            </transition>
+          </div>
         </div>
       </div>
     </div>
@@ -44,7 +58,21 @@ export default {
   data() {
     return {
       collections,
-      docs
+      docs,
+      collectionAlias: '',
+      collectionId: '',
+      docId: ''
+    }
+  },
+  methods: {
+    selectItem({ type, id, alias }) {
+      if (type === 'collections') {
+        this.collectionAlias = alias
+        this.collectionId = id
+        this.docId = ''
+      } else {
+        this.docId = id
+      }
     }
   }
 }
@@ -76,5 +104,14 @@ export default {
   margin: -4px 0 -1px 0;
   height: 15px;
   line-height: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

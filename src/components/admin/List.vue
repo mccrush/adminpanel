@@ -3,15 +3,16 @@
     <button
       v-for="(item, index) in data"
       :key="'bt'+index"
-      class="btn btn-sm btn-block btn-light border-0 rounded-0 m-0 text-left p-2 pl-3 lh-sm"
-      @click="$emit('select-doc', item.id)"
+      class="btn btn-sm btn-block border-0 rounded-0 m-0 text-left p-2 pl-3 lh-sm"
+      :class="id === item.id ? 'btn-warning': 'btn-light'"
+      @click="$emit('select-item', {type, id:item.id, alias: item.title.substring(0, 8)})"
     >{{item.title.substring(0, 19)}}</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['data']
+  props: ['type', 'data', 'id']
 }
 </script>
 
