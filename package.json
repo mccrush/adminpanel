@@ -1,8 +1,8 @@
 {
-  "name": "testv3",
-  "version": "1.0.0",
-  "description": "nodesc",
-  "author": "mccrush@mail.ru",
+  "name": "adminpanel",
+  "version": "0.1.0",
+  "description": "Simple admin panel for websites",
+  "author": "mccrush2027@gmail.com",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
