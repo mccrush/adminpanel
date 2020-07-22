@@ -22,22 +22,27 @@
             <h6 class="text-center m-0 mt-2 pb-2 border-bottom">
               Документы
               <button
-                @click="createDoc = true; selectDocId=''; doc = {active: true, position: docs.length + 1}"
+                @click="create = true; docId=''; doc = {active: true, position: docs.length + 1}"
                 class="btn btn-sm btn-light p-0 pl-2 pr-2 ml-1 border text-muted create-button"
                 :disabled="!collectionAlias ? true: false"
                 title="Создать документ"
               >+</button>
             </h6>
-            <List :data="docs" type="docs" :id="docId" @select-item="selectItem" />
+            <List
+              v-if="collectionAlias"
+              :data="docs"
+              type="docs"
+              :id="docId"
+              @select-item="selectItem"
+            />
           </div>
-          <div class="col-6 col-md-8">
+          <div class="col-6 col-md-8 p-3">
             <transition name="fade" mode="out-in">
+              <Form v-if="docId || create" :doc="doc" />
               <h6
-                v-if="!docId"
-                key="save"
-                class="text-center m-0 mt-2 pb-2 border-bottom"
+                v-else
+                class="text-center m-0 pb-3 border-bottom"
               >{{collectionAlias ? 'Выберите документ' : 'Выберите коллекцию'}}</h6>
-              <h6 v-else key="edit" class="text-center m-0 mt-2 pb-2 border-bottom">Форма</h6>
             </transition>
           </div>
         </div>
@@ -47,31 +52,51 @@
 </template>
 
 <script>
+// import { mapGetters } from 'vuex'
 import collections from '@/data/collections'
 import docs from '@/data/docs'
 import List from '@/components/admin/List'
+import Form from '@/components/admin/Form'
 
 export default {
   components: {
-    List
+    List,
+    Form
   },
   data() {
     return {
       collections,
       docs,
+      doc: {},
       collectionAlias: '',
       collectionId: '',
-      docId: ''
+      docId: '',
+      create: false
     }
   },
+  // computed: {
+  //   ...mapGetters([
+  //     'clients',
+  //     'menus',
+  //     'napravs',
+  //     'portfolios',
+  //     'prices',
+  //     'sliders',
+  //     'zadachi',
+  //     'contacts'
+  //   ])
+  // },
   methods: {
     selectItem({ type, id, alias }) {
       if (type === 'collections') {
         this.collectionAlias = alias
+        //this.docs = this[alias]
         this.collectionId = id
+        this.create = false
         this.docId = ''
       } else {
         this.docId = id
+        this.doc = this.docs.find(doc => doc.id === id)
       }
     }
   }
