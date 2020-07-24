@@ -5,8 +5,8 @@
       <Footer />
     </div>
     <div v-if="mode === 'admin'" class="admin">
-      <!-- <Admin /> -->
-      <Login />
+      <Admin />
+      <!-- <Login /> -->
     </div>
   </div>
 </template>

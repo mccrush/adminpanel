@@ -19,6 +19,24 @@
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+
+    <div class="row mt-3">
+      <div class="col-12 col-sm-6 col-md-4">
+        <transition name="fade" mode="out-in">
+          <button
+            @click="removeDoc"
+            type="button"
+            class="btn btn-sm btn-block btn-outline-danger"
+          >Удалить</button>
+        </transition>
+      </div>
+      <div class="d-none d-md-block col-4">
+        <!-- Очистить -->
+      </div>
+      <div class="col-12 col-sm-6 col-md-4">
+        <button type="submit" class="btn btn-sm btn-block btn-outline-success">Сохранить</button>
+      </div>
+    </div>
   </form>
 </template>
 

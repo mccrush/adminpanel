@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5 bg-dark vh-100 bg-image">
+  <div class="p-1 p-lg-5 bg-dark vh-100 bg-image">
     <div class="bg-white shadow-sm rounded-lg admin-block">
       <div class="container-fluid">
         <div class="row">
@@ -61,7 +61,7 @@ import Form from '@/components/admin/Form'
 export default {
   components: {
     List,
-    Form
+    Form,
   },
   data() {
     return {
@@ -71,7 +71,7 @@ export default {
       collectionAlias: '',
       collectionId: '',
       docId: '',
-      create: false
+      create: false,
     }
   },
   // computed: {
@@ -96,10 +96,10 @@ export default {
         this.docId = ''
       } else {
         this.docId = id
-        this.doc = this.docs.find(doc => doc.id === id)
+        this.doc = this.docs.find((doc) => doc.id === id)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
