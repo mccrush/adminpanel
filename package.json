@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Simple admin panel for websites",
   "author": "mccrush2027@gmail.com",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
